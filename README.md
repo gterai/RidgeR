@@ -55,7 +55,7 @@ docker run -it --rm  -v [data directory]:/wdir/data ridger:0 ./optPair.pl [Alpha
 Output files are found in the [data directory]/out directory, unless you do not specify the name of the output directory.
 The w_fin.txt file in the directory contains the optimized regression parameters (coefficients). The parameter values tell us which structural features increase/reduce bioactivity.
 For example a value of wI_x_i in the w_fin.txt represents the effect of the i-th base of the RNA sequence in seqX.fa belongs to an internal loop.
-Please see, the main text for the explanation of parameters.
+Please see, the main text for the explanation of parameters. The nnfv.txt file contains feature vectors and normalized bioactivity values used to optimize the regression parameters. You can extract position-specific features from this file or use it for the analysis with other machine learning algorithms.
 
 ## Options
 ```
