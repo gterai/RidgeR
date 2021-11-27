@@ -63,7 +63,7 @@ Please see, the main text for the explanation of parameters. The nnfv.txt file c
 ```
 
 # Tutorials
-## How to run out software to the provided datasets (dataset1-5)
+## How to run out software to the datasets used in our paper (dataset1-5)
 Unzip the tar.gz file of each data set, and you will get seq.fa, act.txt, and other files. Copy those files to the data directory of your choice name. By running the program as per the instructions above, you can run our method for datasets 1 through 5.
 
 ## How to run out software to other datasets
