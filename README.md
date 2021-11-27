@@ -68,4 +68,5 @@ Unzip the tar.gz file of each data set, and you will get seq.fa, act.txt, and ot
 
 ## How to run out software to other datasets
 
-
+## How to use the position-specific features in other analyses
+When you run our method, a file named nnfv.txt will be created in the output directory. This file contains information about the normalized activity values and site-specific structural features of each RNA sequence. The user can copy this file and use it for various analyses. For example, it can be used as input for various machine learning algorithms. Also, by writing a simple program or using software such as an Excel file, it is possible to extract only RNA with specific properties. For example, you can get a list of RNAs where a certain position is predicted to be on the right side of the base pair. see below for the format of the nnfv.txt file.
