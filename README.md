@@ -74,6 +74,5 @@ When you run our method, a file named nnfv.txt will be created in the output dir
 ## How to use the position-specific features obtained by your own methods (advanced use)
 Users can use the position-specific structural features calculated by their own methods as input for our method. This is a very advanced use. For example, suppose a user develops a program to calculate the position-specific structural features using energy parameters other than CONTRAfold, or those features calculated by taking into account the results of SHAPE experiments. The user can use the structural features calculated by that program as input data for our method. This can be done by making the structural features fit the format of the nnfv.txt file. Copy the created nnfv.txt file to the output directory. Then run our program with the -F option. If the header of your own nnfv.txt file is correct, both the text data (w_opt.txt) containing the optimized weights and the image data of it will be created. if the header of the nnfv.txt file is not correct, the image data will not be output, but the text data (w_opt.txt) will be created.
 
-
-
+## The format of the nnfv.txt file
 
