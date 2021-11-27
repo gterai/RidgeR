@@ -61,3 +61,8 @@ Please see, the main text for the explanation of parameters. The nnfv.txt file c
 ```
 -O string  : set the name of the output directory (default:out)  
 ```
+
+## How to run out software to the provided datasets
+
+
+
