@@ -82,4 +82,20 @@ This is an example of the nnfv.txt file for the anslysis of pairs of RNA sequenc
 The first and second column are RNA identifier and the normalized activity, respectively. The third and later colums are the position-specific structural features. The header of the third and later columns are differenf between the nnfv.txt file for single RNAs and for pairs of RNAs. 
 
 ### The header for single RNAs 
-Example of the header is L_1, which represents the expectation of position 1 being in the left side of a base pair. The general format of the header is {type}\_{position}. 
+Example of the header is L_1, which represents the expectation of position 1 being in the left side of a base pair. The format of the header is {type}\_{position}. {type} has one of the six letters, L,R,H,B,I and E, each represents the following fypes of structure.
+L: the left side of a base pair
+R: the right side of a base pair
+H: hairpin loop
+B: bulge loop
+I: internal loop
+E: external loop
+{positon} is a nucleotide position on input RNA sequences.
+
+### The header for pars of RNAs 
+Example of the header is P_1_5, which represents the expectation of the position 1 (in the sequence X) and 5 (in sequence Y) form a base-pair. Another example is L_x_1, which represents the expectation of the position 1 (in the sequence X) being the left side of a base pair. The format of the header for a base pair is P_{i}\_{j}. The format of the header for loops is {type}\_{sequence}\_{position}. {type} has one of the three letters, B,I and E, each represents the following fypes of structure.
+B: bulge loop
+I: internal loop
+E: external loop
+{sequencce} is either x and y, which represent the sequence X and Y, respectively. {positon} is a nucleotide position on RNA sequences indicated by {sequence}.
+
+
