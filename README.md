@@ -81,3 +81,5 @@ This is an example of the nnfv.txt file for the anslysis of pairs of RNA sequenc
 
 The first and second column are RNA identifier and the normalized activity, respectively. The third and later colums are the position-specific structural features. The header of the third and later columns are differenf between the nnfv.txt file for single RNAs and for pairs of RNAs. 
 
+### The header for single RNAs 
+Example of the header is L_1, which represents the expectation of position 1 being in the left side of a base pair. The general format of the header is {type}\_{position}. 
