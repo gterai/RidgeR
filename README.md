@@ -133,7 +133,7 @@ E: external loop
 {positon} is a nucleotide position on input RNA sequences.
 
 ### _The header line for pars of RNAs_ 
-Example of the header is P_1_5, which represents the position 1 (in the sequence X) and 5 (in sequence Y) form a base-pair. Thus, the values in this column is the base pair probability between the position 1 (in the sequence X) and 5 (in sequence Y) form a base-pair. Another example is L_x_1, which represents the position 1 (in the sequence X) being the left side of a base pair. The format of the header for a base pair is P_{i}\_{j}. The format of the header for loops is {type}\_{sequence}\_{position}. {type} has one of the three letters, B,I and E, each represents the following fypes of structure.
+Example of the header is P_1_5, which represents the position 1 (in the sequence X) and 5 (in sequence Y) form a base-pair. Thus, the values in this column is the base pair probability between the position 1 in the sequence X and 5 in sequence Y. Another example is L_x_1, which represents the position 1 (in the sequence X) being the left side of a base pair. The format of the header for a base pair is P_{i}\_{j}. The format of the header for loops is {type}\_{sequence}\_{position}. {type} has one of the three letters, B,I and E, each represents the following fypes of structure.
 B: bulge loop
 I: internal loop
 E: external loop
