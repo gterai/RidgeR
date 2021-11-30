@@ -89,7 +89,7 @@ docker run -it --rm  -v [data directory]:/wdir/data ridger:0 ./optPair.pl [Alpha
 ```
 This command skips the calculation of structural features and runs Ridge regression to optimize regression parameters. The -I option is useful when you want to try various Alpha values.
 
-## ¥*How to use the position-specific features in other analyses
+## '*'How to use the position-specific features in other analyses
 When you run our method, a file named nnfv.txt will be created in your output directory. This file contains the position-specific structural features and normalized activity values of each RNA sequence in a two dimensional table. The user can copy this file and use it for various analyses. For example, it can be used as input for various machine learning algorithms. Also, by writing a simple program or using software such as Excel, it is possible to extract RNAs with specific properties. For example, you can get a list of RNAs where a certain position is predicted to be on the right side of the base pair. See below for the format of the nnfv.txt file.　By calculating the mean value of the position-specific features for each position, you can obtain the trend of the secondary structure of the input RNA sequences in each position. For example, you can find out that the input RNA sequences tends to have a hairpin loop at a certain position.
 
 ## How to use the position-specific features obtained by your own methods (advanced use)
@@ -123,7 +123,7 @@ id      act     P_1_1   P_1_2   P_1_3   P_1_4   P_1_5   P_1_6   P_1_7   P_1_8   
 The first and second column are RNA identifier and the normalized activity, respectively. The third and later columns are the position-specific structural features. The header line of the third and later columns are different between the nnfv.txt file for single RNAs and for pairs of RNAs. 
 
 ### _The header line for single RNAs_
-Example of the header is L_1, which represents the expectation of position 1 being in the left side of a base pair. The format of the header is {type}\_{position}. {type} has one of the six letters, L,R,H,B,I and E, each represents the following fypes of structure.
+Example of the header is L_1, which represents the position 1 being in the left side of a base pair. Thus, the values in this column is the the expectation of the position 1 being in the left side of a base pair. The format of the header line is {type}\_{position}. {type} has one of the six letters, L,R,H,B,I and E, each represents the following fypes of structure.
 L: the left side of a base pair
 R: the right side of a base pair
 H: hairpin loop
@@ -133,7 +133,7 @@ E: external loop
 {positon} is a nucleotide position on input RNA sequences.
 
 ### _The header line for pars of RNAs_ 
-Example of the header is P_1_5, which represents the expectation of the position 1 (in the sequence X) and 5 (in sequence Y) form a base-pair. Another example is L_x_1, which represents the expectation of the position 1 (in the sequence X) being the left side of a base pair. The format of the header for a base pair is P_{i}\_{j}. The format of the header for loops is {type}\_{sequence}\_{position}. {type} has one of the three letters, B,I and E, each represents the following fypes of structure.
+Example of the header is P_1_5, which represents the position 1 (in the sequence X) and 5 (in sequence Y) form a base-pair. Thus, the values in this column is the base pair probability between the position 1 (in the sequence X) and 5 (in sequence Y) form a base-pair. Another example is L_x_1, which represents the position 1 (in the sequence X) being the left side of a base pair. The format of the header for a base pair is P_{i}\_{j}. The format of the header for loops is {type}\_{sequence}\_{position}. {type} has one of the three letters, B,I and E, each represents the following fypes of structure.
 B: bulge loop
 I: internal loop
 E: external loop
