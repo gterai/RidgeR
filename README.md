@@ -32,7 +32,7 @@ Output files are found in the [data directory]/out directory, unless you do not 
 ls [data_directory]/out
 id2PF.txt  id2prof.txt  nnfv.txt  w_opt.png  w_opt.txt
 ```
-The w_opt.txt file in the directory contains the optimized regression parameters (coefficients), and w_opt.png is the heatmap of the optimized parameters. The parameter values tell us which structural features increase/reduce bioactivity. For example, a value of wL_i in the w_opt.txt represents the effect of the i-th base being the left side of a base pair. Please see, our paper for the explanation of the regression parameters. The nnfv.txt file contains position-specific structural features (feature vectors) and normalized bioactivity values. You can extract position-specific features from this file or use it for the analysis with other machine learning algorithms.
+The w_opt.txt file in the directory contains the optimized regression parameters (coefficients), and w_opt.png is the heatmap of the optimized parameters. The parameter values tell us which structural features increase/reduce bioactivity. For example, a value of wL_i in the w_opt.txt represents the effect of the i-th base being the left side of a base pair. Please see, our paper for the explanation of the regression parameters. The nnfv.txt file contains position-specific structural features (feature vectors) and normalized bioactivity values. You can use this file to investivate the position-specific features of each RNA seuence or for the analysis with other machine learning algorithms.
 
 ## Extracting secondary structural features from pairs of two short RNA sequences
 The optPair.pl is a program for extracting secondary structural features from two interacting RNA sequences and their corresponding activity data.
@@ -45,10 +45,10 @@ The seqX.fa file contains an RNA sequence, the seqY.fa file contains RNA sequenc
 ### 2) Running the program
 Type the following command.
 ```
-docker run -it --rm  -v [data directory]:/wdir/data ridger:0 ./optPair.pl [Alpha] [# CPU]
+docker run -it --rm  -v [data directory]:/wdir/data ridger:0 ./optPair.pl [Alpha] [nCPU]
 ```
 
-[Alpha] is the regularization parameter used in Ridge regression. For the data in the example/pair directory, use alpha=1000. [# CPU] is the number of CPUs to be used.
+[Alpha] is the regularization parameter used in Ridge regression. For the data in the example/pair directory, please try Alpha=1000. [nCPU] is the number of CPUs (threads) used to calculate secondary structural features. You should set it according to the available CPUs in your system.
 
 ### 3) Output files
 Output files are found in the [data directory]/out directory, unless you do not specify the name of the output directory.
@@ -57,9 +57,9 @@ ls [data_directory]/out
 id2PF.txt    id2prof.txt     nnfv.txt   w_opt.txt    w_opt_matX.png     w_opt_matP.png     w_opt_matY.png
 ```
 
-The w_fin.txt file in the directory contains the optimized regression parameters (coefficients). The parameter values tell us which structural features increase/reduce bioactivity.
-For example a value of wI_x_i in the w_fin.txt represents the effect of the i-th base of the RNA sequence in seqX.fa belongs to an internal loop.
-Please see, the main text for the explanation of parameters. The nnfv.txt file contains feature vectors and normalized bioactivity values used to optimize the regression parameters. You can extract position-specific features from this file or use it for the analysis with other machine learning algorithms.
+The w_opt.txt file in the directory contains the optimized regression parameters (coefficients). w_opt_matP.png, w_opt_matX.png and w_opt_matY.png are the images of the optimized parameters arranged in three matrices. The parameter values tell us which structural features increase/reduce bioactivity.
+For example a value of wI_x_i in the w_opt.txt represents the effect of the i-th base of the RNA sequence in seqX.fa belongs to an internal loop.
+Please see, our article for the explanation of parameters. The nnfv.txt file contains the position-specific structural features (feature vecters) and normalized bioactivity values. You can use this file to investivate the position-specific features of each RNA seuence or for the analysis with other machine learning algorithms.
 
 ## Options
 ```
