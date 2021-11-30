@@ -81,7 +81,7 @@ Copy these files to your data directory. By running the program as per the instr
 ## How to run our software to other datasets
 Of course you can run our method for the sequence and activity data of your own. For the analysis of single RNA sequences, all you have to do is to make the seq.fa and act.txt file. For the analysis of pairs of RNA sequences, all you have to do is to make the seqX.fa, seqY.fa and act.txt file. Copy these file to your data directory and follow the instructions above.
 
-## How to skip the calculation of structural features and try different Alpha value
+## How to skip the calculation of structural features and try different Alpha values
 The calculation of the position-specific structural features can be time consuming. For example, it took about one hour to calculate the structural features for the dataset1 with nCPU=36 on our computational environment. Once the structural features are calculated (and stored in the nnfv.txt file in your output directory), you can use the -I option.
 Example:
 ```
@@ -89,12 +89,16 @@ docker run -it --rm  -v [data directory]:/wdir/data ridger:0 ./optPair.pl [Alpha
 ```
 This command skips the calculation of structural features and runs Ridge regression to optimize regression parameters. The -I option is useful when you want to try various Alpha values.
 
-## How to use the position-specific features in other analyses
-When you run our method, a file named nnfv.txt will be created in the output directory.
-This file contains information about the position-specific structural features and normalized activity values of each RNA sequence in a two dimensional table. The user can copy this file and use it for various analyses. For example, it can be used as input for various machine learning algorithms. Also, by writing a simple program or using software such as Excel, it is possible to extract RNAs with specific properties. For example, you can get a list of RNAs where a certain position is predicted to be on the right side of the base pair. See below for the format of the nnfv.txt file.　By calculating the mean value of position-specific features for each position, you can obtain the trend of the secondary structure of the input RNA sequences in each position. For example, you can find out that the input RNA sequences tends to have a hairpin loop at a certain position.
+## **How to use the position-specific features in other analyses**
+When you run our method, a file named nnfv.txt will be created in your output directory. This file contains the position-specific structural features and normalized activity values of each RNA sequence in a two dimensional table. The user can copy this file and use it for various analyses. For example, it can be used as input for various machine learning algorithms. Also, by writing a simple program or using software such as Excel, it is possible to extract RNAs with specific properties. For example, you can get a list of RNAs where a certain position is predicted to be on the right side of the base pair. See below for the format of the nnfv.txt file.　By calculating the mean value of the position-specific features for each position, you can obtain the trend of the secondary structure of the input RNA sequences in each position. For example, you can find out that the input RNA sequences tends to have a hairpin loop at a certain position.
 
 ## How to use the position-specific features obtained by your own methods (advanced use)
-Users can use the position-specific structural features calculated by their own methods as input for our method. This is a very advanced use. For example, suppose a user develops a program to calculate the position-specific structural features using energy parameters other than CONTRAfold, or those features calculated by taking into account the results of SHAPE experiments. The user can use the structural features calculated by that program as input data for our method. This can be done by making the structural features fit the format of the nnfv.txt file. Copy the created nnfv.txt file to the output directory. Then run our program with the -F option. If the header of your own nnfv.txt file is correct, both the text data (w_opt.txt) containing the optimized weights and the image data of it will be created. if the header of the nnfv.txt file is not correct, the image data will not be output, but the text data (w_opt.txt) will be created.
+Users can use the position-specific structural features calculated by their own methods as input for our method. This is a very advanced use. For example, suppose a user develops a program to calculate the position-specific structural features using energy models other than the CONTRAfold, or using an algorithm taking into account the results of structure probing experiments such as DMS-seq and SHAPE. The user can use the structural features as input data for our method. This can be done by making the structural features fit the format of the nnfv.txt file. Copy the created nnfv.txt file to your output directory. Then run our program with the -I option. 
+Example:
+```
+docker run -it --rm  -v [data directory]:/wdir/data ridger:0 ./optPair.pl [Alpha] [nCPU] -I
+```
+Note that there must be the nnfv.txt file in [data_directory]/out/. If the header line of your own nnfv.txt file is correct, both the text data (w_opt.txt) containing the optimized weights and the image data of it will be created. if the header line of the nnfv.txt file is not correct, the image data will not be output, but the text data (w_opt.txt) will be created.
 
 ## The format of the nnfv.txt file
 This is an example of the nnfv.txt file for the anslysis of single RNA sequences
