@@ -79,7 +79,15 @@ tar zxvf dataset2_twieter_ribozymes.tar.gz
 Copy these files to your data directory. By running the program as per the instructions above, you can run our method for datasets 1 through 5.
 
 ## How to run our software to other datasets
-Of course you can run our method for the sequence and activity data of your own. For the analysis of single RNA sequences, all you have to do is to make the seq.fa and act.txt file. For the analysis of pairs of RNA sequences, all you have to do is to make the seqX.fa, seqY.fa and act.txt file. Copy these file to your data directory and follow instructions above.
+Of course you can run our method for the sequence and activity data of your own. For the analysis of single RNA sequences, all you have to do is to make the seq.fa and act.txt file. For the analysis of pairs of RNA sequences, all you have to do is to make the seqX.fa, seqY.fa and act.txt file. Copy these file to your data directory and follow the instructions above.
+
+## How to skip the calculation of structural features and rerun our method
+The calculation of the position-specific structural features can be time consuming. For example, it took about one hour to calculate the structural features for the dataset1 with nCPU=36 on our computational environment. Once the structural features are calculated (and stored in the nnfv.txt file in your output directory), you can use the -I option.
+Example:
+```
+docker run -it --rm  -v [data directory]:/wdir/data ridger:0 ./optPair.pl [Alpha] [nCPU] -I
+```
+This command skips the calculation of structural features and runs Ridge regression to optimize regression parameters. The -I option is useful when you want to try various Alpha values.
 
 ## How to use the position-specific features in other analyses
 When you run our method, a file named nnfv.txt will be created in the output directory.
