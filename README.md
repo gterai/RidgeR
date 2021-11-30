@@ -66,10 +66,22 @@ Please see, the main text for the explanation of parameters. The nnfv.txt file c
 ## How to run out software to the datasets used in our paper (dataset1-5)
 Unzip the tar.gz file of each data set, and you will get seq.fa, act.txt, and other files. Copy those files to the data directory of your choice name. By running the program as per the instructions above, you can run our method for datasets 1 through 5.
 
+```
+tar zxvf dataset2_Ribozyme.tar.gz
+```
+
+
 ## How to run our software to other datasets
 
+
 ## How to use the position-specific features in other analyses
-When you run our method, a file named nnfv.txt will be created in the output directory. This file contains information about the position-specific structural features and normalized activity values of each RNA sequence in a two dimensional table. The user can copy this file and use it for various analyses. For example, it can be used as input for various machine learning algorithms. Also, by writing a simple program or using software such as Excel, it is possible to extract RNAs with specific properties. For example, you can get a list of RNAs where a certain position is predicted to be on the right side of the base pair. See below for the format of the nnfv.txt file.　By calculating the mean value of position-specific features for each position, you can obtain the trend of the secondary structure of the input RNA sequences. For example, you can find out that the input RNA sequences tends to have a hairpin loop at a certain position.
+When you run our method, a file named nnfv.txt will be created in the output directory.
+```
+ls [data_dir]
+
+```
+
+This file contains information about the position-specific structural features and normalized activity values of each RNA sequence in a two dimensional table. The user can copy this file and use it for various analyses. For example, it can be used as input for various machine learning algorithms. Also, by writing a simple program or using software such as Excel, it is possible to extract RNAs with specific properties. For example, you can get a list of RNAs where a certain position is predicted to be on the right side of the base pair. See below for the format of the nnfv.txt file.　By calculating the mean value of position-specific features for each position, you can obtain the trend of the secondary structure of the input RNA sequences in each position. For example, you can find out that the input RNA sequences tends to have a hairpin loop at a certain position.
 
 ## How to use the position-specific features obtained by your own methods (advanced use)
 Users can use the position-specific structural features calculated by their own methods as input for our method. This is a very advanced use. For example, suppose a user develops a program to calculate the position-specific structural features using energy parameters other than CONTRAfold, or those features calculated by taking into account the results of SHAPE experiments. The user can use the structural features calculated by that program as input data for our method. This can be done by making the structural features fit the format of the nnfv.txt file. Copy the created nnfv.txt file to the output directory. Then run our program with the -F option. If the header of your own nnfv.txt file is correct, both the text data (w_opt.txt) containing the optimized weights and the image data of it will be created. if the header of the nnfv.txt file is not correct, the image data will not be output, but the text data (w_opt.txt) will be created.
