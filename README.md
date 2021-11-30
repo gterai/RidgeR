@@ -79,7 +79,7 @@ tar zxvf dataset2_twieter_ribozymes.tar.gz
 Copy these files to your data directory. By running the program as per the instructions above, you can run our method for datasets 1 through 5.
 
 ## How to run our software to other datasets
-
+Of course you can run our method for the sequence and activity data of your own. For the analysis of single RNA sequences, all you have to do is to make the seq.fa and act.txt file. For the analysis of pairs of RNA sequences, all you have to do is to make the seqX.fa, seqY.fa and act.txt file. Copy these file to your data directory and follow instructions above.
 
 ## How to use the position-specific features in other analyses
 When you run our method, a file named nnfv.txt will be created in the output directory.
