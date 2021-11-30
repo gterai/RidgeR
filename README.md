@@ -81,7 +81,7 @@ Copy these files to your data directory. By running the program as per the instr
 ## How to run our software to other datasets
 Of course you can run our method for the sequence and activity data of your own. For the analysis of single RNA sequences, all you have to do is to make the seq.fa and act.txt file. For the analysis of pairs of RNA sequences, all you have to do is to make the seqX.fa, seqY.fa and act.txt file. Copy these file to your data directory and follow the instructions above.
 
-## How to skip the calculation of structural features and rerun our method
+## How to skip the calculation of structural features and try different Alpha value
 The calculation of the position-specific structural features can be time consuming. For example, it took about one hour to calculate the structural features for the dataset1 with nCPU=36 on our computational environment. Once the structural features are calculated (and stored in the nnfv.txt file in your output directory), you can use the -I option.
 Example:
 ```
