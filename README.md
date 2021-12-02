@@ -8,7 +8,7 @@ docker build -t qrnastr:0 -f Dockerfile .
 Now, you are able to run our programs.
 
 ## Extracting secondary structural features from single RNA sequences.
- The optSingle.pl is a program for extracting secondary structural features from single RNA sequences and their corresponding activity data.
+ The QRNAsingle.pl is a program for extracting secondary structural features from single RNA sequences and their corresponding activity data.
  You can run it by the following two simple procedures.
 
 ### 1) Preparing a data directory
@@ -35,8 +35,8 @@ id2PF.txt  id2prof.txt  nnfv.txt  w_opt.png  w_opt.txt
 The w_opt.txt file in the directory contains the optimized regression parameters (coefficients), and w_opt.png is the heatmap of the optimized parameters. The parameter values tell us which structural features increase/reduce bioactivity. For example, a value of wL_i in the w_opt.txt represents the effect of the i-th base being the left side of a base pair. Please see, our paper for the explanation of the regression parameters. The nnfv.txt file contains position-specific structural features (feature vectors) and normalized bioactivity values. You can use this file to investivate the position-specific features of each RNA seuence or for the analysis with other machine learning algorithms.
 
 ## Extracting secondary structural features from pairs of two short RNA sequences
-The optPair.pl is a program for extracting secondary structural features from two interacting RNA sequences and their corresponding activity data.
-You can run it by almost the same two procedures as the optSingle.pl program.
+The QRNAstruct_pair.pl is a program for extracting secondary structural features from two interacting RNA sequences and their corresponding activity data.
+You can run it by almost the same two procedures as the QRNA_single.pl program.
 
 ### 1) Preparing a data directory
 You have to prepare a data directory in which “seqX.fa”, “seqY.fa” and “act.txt” files are included.
