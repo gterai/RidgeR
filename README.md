@@ -20,7 +20,7 @@ The seq.fa file contains RNA sequences in the FASTA format, and act.txt file con
 Type the following command.
 
 ```
-docker run -it --rm  -v [data directory]:/wdir/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU]
+docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU]
 ```
 
 Please replace [data directory] to the path to your data directory. [Alpha] is the regularization parameter used in Ridge regression.
