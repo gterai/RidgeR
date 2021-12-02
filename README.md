@@ -2,13 +2,14 @@
 You can use our programs using the Docker framework. Download "workdir.tar.gz" and "Dockerfile" in a directory you like. Then type the following command in the directory.
 
 ```
-docker build -t qrnastr:0 -f Dockerfile .
+docker build -t qrna:0 -f Dockerfile .
 ```
 
 Now, you are able to run our programs.
 
 ## Extracting secondary structural features from single RNA sequences.
- The QRNAsingle.pl is a program for extracting secondary structural features from single RNA sequences and their corresponding activity data.
+ The 
+ single.pl is a program for extracting secondary structural features from single RNA sequences and their corresponding activity data.
  You can run it by the following two simple procedures.
 
 ### 1) Preparing a data directory
@@ -19,7 +20,7 @@ The seq.fa file contains RNA sequences in the FASTA format, and act.txt file con
 Type the following command.
 
 ```
-docker run -it --rm  -v [data directory]:/wdir/data qrnastr:0 ./QRNAstruct_single.pl [Alpha] [nCPU]
+docker run -it --rm  -v [data directory]:/wdir/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU]
 ```
 
 Please replace [data directory] to the path to your data directory. [Alpha] is the regularization parameter used in Ridge regression.
@@ -45,7 +46,7 @@ The seqX.fa file contains an RNA sequence, the seqY.fa file contains RNA sequenc
 ### 2) Running the program
 Type the following command.
 ```
-docker run -it --rm  -v [data directory]:/wdir/data qrnastr:0 ./QRNAstruct_pair.pl [Alpha] [nCPU]
+docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_pair.pl [Alpha] [nCPU]
 ```
 
 [Alpha] is the regularization parameter used in Ridge regression. For the data in the example/pair directory, please try Alpha=1000. [nCPU] is the number of CPUs (threads) used to calculate secondary structural features. You should set it according to the available CPUs in your system.
@@ -85,7 +86,7 @@ Of course you can run our method for the sequence and activity data of your own.
 The calculation of the position-specific structural features can be time consuming. For example, it took about one hour to calculate the structural features for the dataset1 with nCPU=36 on our computational environment. Once the structural features are calculated (and stored in the nnfv.txt file in your output directory), you can use the -I option.
 Example:
 ```
-docker run -it --rm  -v [data directory]:/wdir/data qrnastr:0 ./QRNAstruct_pair.pl [Alpha] [nCPU] -I
+docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_pair.pl [Alpha] [nCPU] -I
 ```
 This command skips the calculation of structural features and runs Ridge regression to optimize regression parameters. The -I option is useful when you want to try various Alpha values.
 
@@ -96,11 +97,11 @@ When you run our method, a file named nnfv.txt will be created in your output di
 Users can use the position-specific structural features calculated by their own methods as input for our method. This is a very advanced use. For example, suppose a user develops a program to calculate the position-specific structural features using energy models other than the CONTRAfold, or using an algorithm taking into account the results of structure probing experiments such as DMS-seq and SHAPE. The user can use the structural features created by that program as input data for our method. This can be done by making the structural features fit the format of the nnfv.txt file. Copy the created nnfv.txt file to your output directory. Then run our program with the -I option. 
 Example (for the analysis of single RNAs):
 ```
-docker run -it --rm  -v [data directory]:/wdir/data qrnastr:0 ./QRNAstruct_single.pl [Alpha] [nCPU] -I
+docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU] -I
 ```
 Example (for the analysis of pairs of RNAs):
 ```
-docker run -it --rm  -v [data directory]:/wdir/data qrnastr:0 ./QRNAstruct_pair.pl [Alpha] [nCPU] -I
+docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_pair.pl [Alpha] [nCPU] -I
 ```
 Note that there must be the nnfv.txt file in [data_directory]/out/. If the header line of your own nnfv.txt file is correct, both the text data (w_opt.txt) containing the optimized weights and the image data of it will be created. if the header line of the nnfv.txt file is not correct, the image data will not be output, but the text data (w_opt.txt) will be created.
 
