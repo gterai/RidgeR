@@ -69,7 +69,7 @@ Please see, our article for the explanation of parameters. The nnfv.txt file con
 ```
 
 # Tutorials
-## How to run out software to the datasets used in our paper (dataset1-5)
+## How to run our software to the datasets used in our paper (dataset1-5)
 Unzip the tar.gz file of each data set, and you will get seq.fa, act.txt, and other files. 
 Example:
 ```
