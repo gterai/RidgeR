@@ -7,7 +7,7 @@ docker build -t qrna:0 -f Dockerfile .
 
 Now, you are able to run our programs.
 
-## Extracting secondary structural features from single RNA sequences.
+## Extracting secondary structural features from single RNA sequences
  The 
  single.pl is a program for extracting secondary structural features from single RNA sequences and their corresponding activity data.
  You can run it by the following two simple procedures.
