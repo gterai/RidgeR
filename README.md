@@ -15,7 +15,7 @@ Now, you are able to run our programs.
 
 ### 1) Preparing a data directory
 You have to prepare a data directory in which “seq.fa” and “act.txt” files are included.
-The seq.fa file contains RNA sequences in the FASTA format, and act.txt file contains their activity values in a tab delimited format (Please see the act.txt file in the example/single directory in the example.tar.gz file). Please note that the length of RNA sequences in seq.fa must be the same.
+The seq.fa file contains RNA sequences in the FASTA format, and act.txt file contains their activity values in a tab delimited format (see the act.txt file in the example/single directory in the example.tar.gz file). Note that the length of RNA sequences in seq.fa must be the same.
 
 ### 2) Running the program
 Type the following command.
@@ -24,14 +24,14 @@ Type the following command.
 docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU]
 ```
 
-Please replace [data directory] to the path to your data directory. [Alpha] is the regularization parameter used in Ridge regression.
+Replace [data directory] to the path to your data directory. [Alpha] is the regularization parameter used in Ridge regression.
 [nCPU] is the number of CPUs (threads) used to calculate secondary structural features. You should set it according to the available CPUs in your system.
-If you want to try our software with example data, please do the following.
+If you want to try our software with example data, do the following.
 ```
 tar zxvf example.tar.gz
 docker run -it --rm  -v $PWD/example/single:/qrna/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU]
 ```
-For the example data, please try Alpha=100.
+For the example data, try Alpha=100.
 
 ### 3) Output files
 Output files are found in the [data directory]/out directory, unless you do not specify the name of the output directory.
@@ -47,7 +47,7 @@ You can run it by almost the same two procedures as the QRNA_single.pl program.
 
 ### 1) Preparing a data directory
 You have to prepare a data directory in which “seqX.fa”, “seqY.fa” and “act.txt” files are included.
-The seqX.fa file contains an RNA sequence, the seqY.fa file contains RNA sequences in the FASTA format, and act.txt file contains their activity values in a tab delimited format (Please see the act.txt file in the example/pair directory in the example.tar.gz file). Currently, the seqX file must not contain multiple RNA sequences. Please note that the length of RNA sequences in seqY.fa must be the same.
+The seqX.fa file contains an RNA sequence, the seqY.fa file contains RNA sequences in the FASTA format, and act.txt file contains their activity values in a tab delimited format (see the act.txt file in the example/pair directory in the example.tar.gz file). Currently, the seqX file must not contain multiple RNA sequences. Note that the length of RNA sequences in seqY.fa must be the same.
 
 ### 2) Running the program
 Type the following command.
@@ -55,12 +55,12 @@ Type the following command.
 docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_pair.pl [Alpha] [nCPU]
 ```
 
-[Alpha] is the regularization parameter used in Ridge regression. For the data in the example/pair directory, please try Alpha=1000. [nCPU] is the number of CPUs (threads) used to calculate secondary structural features. You should set it according to the available CPUs in your system. If you want to try our software with example data, please do the following.
+[Alpha] is the regularization parameter used in Ridge regression. For the data in the example/pair directory, please try Alpha=1000. [nCPU] is the number of CPUs (threads) used to calculate secondary structural features. You should set it according to the available CPUs in your system. If you want to try our software with example data, do the following.
 ```
 tar zxvf example.tar.gz
 docker run -it --rm  -v $PWD/example/pair:/qrna/data qrna:0 ./QRNAstruct_pair.pl [Alpha] [nCPU]
 ```
-For the example data, please try Alpha=1000.
+For the example data, try Alpha=1000.
 
 ### 3) Output files
 Output files are found in the [data directory]/out directory, unless you do not specify the name of the output directory.
@@ -71,7 +71,7 @@ id2PF.txt    id2prof.txt     nnfv.txt   w_opt.txt    w_opt_matX.png     w_opt_ma
 
 The w_opt.txt file in the directory contains the optimized regression parameters (coefficients). w_opt_matP.png, w_opt_matX.png and w_opt_matY.png are the images of the optimized parameters arranged in three matrices. The parameter values tell us which structural features increase/reduce bioactivity.
 For example a value of wI_x_i in the w_opt.txt represents the effect of the i-th base of the RNA sequence in seqX.fa belongs to an internal loop.
-Please see, our article for the explanation of parameters. The nnfv.txt file contains the position-specific structural features (feature vecters) and normalized bioactivity values. You can use this file to investivate the position-specific features of each RNA seuence or for the analysis with other machine learning algorithms.
+Please see our article for the explanation of parameters. The nnfv.txt file contains the position-specific structural features (feature vecters) and normalized bioactivity values. You can use this file to investivate the position-specific features of each RNA seuence or for the analysis with other machine learning algorithms.
 
 ## Options
 ```
