@@ -1,5 +1,5 @@
 # How to use
-You can use our programs using the Docker framework. You must install in your environment. 
+You can use our programs using the Docker framework. You must install Docker in your environment. 
 Then type the following commands in a directory you like.
 
 ```
