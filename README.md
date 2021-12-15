@@ -1,6 +1,5 @@
 # How to use
-You can use our programs using the Docker framework. You must install Docker in your environment. 
-Then type the following commands in a directory you like.
+You can use our programs using the Docker framework. At first, you must install Docker in your environment. Then, type the following commands.
 
 ```
 git clone https://github.com/gterai/QRNAstruct
