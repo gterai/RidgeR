@@ -26,8 +26,13 @@ docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_single.p
 ```
 
 Please replace [data directory] to the path to your data directory. [Alpha] is the regularization parameter used in Ridge regression.
-For the data in the example/single directory, please try Alpha=100.
 [nCPU] is the number of CPUs (threads) used to calculate secondary structural features. You should set it according to the available CPUs in your system.
+If you want to try our software with example data, please do the following
+```
+tar zxvf example.tar.gz
+docker run -it --rm  -v $PWD/example/single:/qrna/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU]
+```
+For the example data, please try Alpha=100.
 
 ### 3) Output files
 Output files are found in the [data directory]/out directory, unless you do not specify the name of the output directory.
