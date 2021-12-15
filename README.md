@@ -1,15 +1,17 @@
 # How to use
-You can use our programs using the Docker framework. Download "workdir.tar.gz" and "Dockerfile" in a directory you like. Then type the following command in the directory.
+You can use our programs using the Docker framework. You must install in your environment. 
+Then type the following commands in a directory you like.
 
 ```
+git clone https://github.com/gterai/QRNAstruct
+cd QRNAstruct
 docker build -t qrna:0 -f Dockerfile .
 ```
 
 Now, you are able to run our programs.
 
 ## Extracting secondary structural features from single RNA sequences
- The 
- single.pl is a program for extracting secondary structural features from single RNA sequences and their corresponding activity data.
+ The single.pl is a program for extracting secondary structural features from single RNA sequences and their corresponding activity data.
  You can run it by the following two simple procedures.
 
 ### 1) Preparing a data directory
