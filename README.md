@@ -41,6 +41,13 @@ id2PF.txt  id2prof.txt  nnfv.txt  w_opt.png  w_opt.txt
 ```
 The w_opt.txt file in the directory contains the optimized regression parameters (coefficients), and w_opt.png is the heatmap of the optimized parameters. The parameter values tell us which structural features increase/reduce bioactivity. For example, a value of wL_i in the w_opt.txt represents the effect of the i-th base being the left side of a base pair. Please see, our paper for the explanation of the regression parameters. The nnfv.txt file contains position-specific structural features (feature vectors) and normalized bioactivity values. You can use this file to investivate the position-specific features of each RNA seuence or for the analysis with other machine learning algorithms.
 
+### Options
+```
+-O string  : set the name of the output directory (default:out)  
+-I string  : skip the calculation of the position-specific structural features 
+--SHAPE    : use structure probing data for the calculation of the position-specific structural features
+```
+
 ## Extracting secondary structural features from pairs of two short RNA sequences
 The QRNAstruct_pair.pl is a program for extracting secondary structural features from two interacting RNA sequences and their corresponding activity data.
 You can run it by almost the same two procedures as the QRNA_single.pl program.
@@ -73,7 +80,7 @@ The w_opt.txt file in the directory contains the optimized regression parameters
 For example a value of wI_x_i in the w_opt.txt represents the effect of the i-th base of the RNA sequence in seqX.fa belongs to an internal loop.
 Please see our article for the explanation of parameters. The nnfv.txt file contains the position-specific structural features (feature vecters) and normalized bioactivity values. You can use this file to investivate the position-specific features of each RNA seuence or for the analysis with other machine learning algorithms.
 
-## Options
+### Options
 ```
 -O string  : set the name of the output directory (default:out)  
 -I string  : skip the calculation of the position-specific structural features 
@@ -101,7 +108,10 @@ docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_pair.pl 
 ```
 This command skips the calculation of structural features and runs Ridge regression to optimize regression parameters. The -I option is useful when you want to try various Alpha values.
 
-## *How to use the position-specific features in other analyses
+## How to use the position-specific features in other analyses
+When you run our method, a file named nnfv.txt will be created in your output directory. This file contains the position-specific structural features and normalized activity values of each RNA sequence in a two dimensional table. The user can copy this file and use it for various analyses. For example, it can be used as input for various machine learning algorithms. Also, by writing a simple program or using software such as Excel, it is possible to extract RNAs with specific properties. For example, you can get a list of RNAs where a certain position is predicted to be on the right side of the base pair. See below for the format of the nnfv.txt file.　By calculating the mean value of the position-specific features for each position, you can obtain the trend of the secondary structure of the input RNA sequences in each position. For example, you can find out that the input RNA sequences tends to have a hairpin loop at a certain position.
+
+## How to incorporate structure probing data
 When you run our method, a file named nnfv.txt will be created in your output directory. This file contains the position-specific structural features and normalized activity values of each RNA sequence in a two dimensional table. The user can copy this file and use it for various analyses. For example, it can be used as input for various machine learning algorithms. Also, by writing a simple program or using software such as Excel, it is possible to extract RNAs with specific properties. For example, you can get a list of RNAs where a certain position is predicted to be on the right side of the base pair. See below for the format of the nnfv.txt file.　By calculating the mean value of the position-specific features for each position, you can obtain the trend of the secondary structure of the input RNA sequences in each position. For example, you can find out that the input RNA sequences tends to have a hairpin loop at a certain position.
 
 ## How to use the position-specific features obtained by your own methods (advanced use)
