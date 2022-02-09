@@ -186,10 +186,10 @@ E: external loop
 {sequencce} is either x and y, which represent the sequence X and Y, respectively. {positon} is a nucleotide position on RNA sequences indicated by {sequence}.
 
 ## Reference
-[1]. Deigan,K.E., Li,T.W., Mathews,D.H. and Weeks,K.M. (2009) Accurate SHAPE-directed RNA structure determination. Proc. Natl. Acad. Sci., 106, 97–102.
-[2]. Cordero,P., Kladwang,W., VanLang,C.C. and Das,R. (2012) Quantitative Dimethyl Sulfate Mapping for Automated RNA Secondary Structure Inference. Biochemistry, 51, 7037–7039.
-[3]. Reuter,J.S. and Mathews,D.H. (2010) RNAstructure: software for RNA secondary structure prediction and analysis. BMC Bioinformatics, 11, 129.
-[4]. Fukunaga,T., Ozaki,H., Terai,G., Asai,K., Iwasaki,W. and Kiryu,H. (2014) CapR: revealing structural specificities of RNA-binding protein target recognition using CLIP-seq data. Genome Biol., 15, R16.
+1. Deigan,K.E., Li,T.W., Mathews,D.H. and Weeks,K.M. (2009) Accurate SHAPE-directed RNA structure determination. Proc. Natl. Acad. Sci., 106, 97–102.
+2. Cordero,P., Kladwang,W., VanLang,C.C. and Das,R. (2012) Quantitative Dimethyl Sulfate Mapping for Automated RNA Secondary Structure Inference. Biochemistry, 51, 7037–7039.
+3. Reuter,J.S. and Mathews,D.H. (2010) RNAstructure: software for RNA secondary structure prediction and analysis. BMC Bioinformatics, 11, 129.
+4. Fukunaga,T., Ozaki,H., Terai,G., Asai,K., Iwasaki,W. and Kiryu,H. (2014) CapR: revealing structural specificities of RNA-binding protein target recognition using CLIP-seq data. Genome Biol., 15, R16.
 
 ## Citation
 If you use this software please cite the following article:
