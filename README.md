@@ -186,7 +186,7 @@ E: external loop
 {sequencce} is either x and y, which represent the sequence X and Y, respectively. {positon} is a nucleotide position on RNA sequences indicated by {sequence}.
 
 ## The format of the probing.txt file
-This is an example of the nnfv.txt file for the anslysis of pairs of RNA sequences
+This is an example of the probing.txt file.  
 ```
 >gene1
 1       -1000
@@ -208,7 +208,7 @@ This is an example of the nnfv.txt file for the anslysis of pairs of RNA sequenc
 5       -1000
 ...
 ```
-
+The first line starts with a ">" (greater-than) symbol and the identifier of gene following the ">". Subsequent lines have the position and reactivity value with a tab delimiter between them. The reactivity less than -500 indicates that there is no SHAPE reactivity data in the position. The symbols "//" indicate the end of SHAPE reactivity data of the gene that appears immediately before it.
 
 ## Reference
 1. Deigan,K.E., Li,T.W., Mathews,D.H. and Weeks,K.M. (2009) Accurate SHAPE-directed RNA structure determination. Proc. Natl. Acad. Sci., 106, 97–102.
