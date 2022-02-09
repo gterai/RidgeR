@@ -45,10 +45,10 @@ The w_opt.txt file in the directory contains the optimized regression parameters
 ```
 -O string        : set the name of the output directory (default:out)  
 -I string        : skip the calculation of the position-specific structural features 
---SHAPE          : use structure probing data for the calculation of the position-specific structural features
---SHAPEslope     : use structure probing data for the calculation of the position-specific structural features
---SHAPEintercept : use structure probing data for the calculation of the position-specific structural features
---DMS            : use structure probing data for the calculation of the position-specific structural features
+--SHAPE          : use SHAPE probing data for the calculation of the position-specific structural features
+--SHAPEslope     : a slope used to convert the SHAPE reactivity to pseudo-free energy (default: 1.8 kcal/mol)
+--SHAPEintercept : an intercept used to convert the SHAPE reactivity to pseudo-free energy (default: -0.6 kcal/mol)
+--DMS            : use DMS probing data for the calculation of the position-specific structural features
 ```
 
 ## Extracting secondary structural features from pairs of two short RNA sequences
