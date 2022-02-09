@@ -185,6 +185,31 @@ I: internal loop
 E: external loop
 {sequencce} is either x and y, which represent the sequence X and Y, respectively. {positon} is a nucleotide position on RNA sequences indicated by {sequence}.
 
+## The format of the probing.txt file
+This is an example of the nnfv.txt file for the anslysis of pairs of RNA sequences
+```
+>gene1
+1       -1000
+2       -1000
+3       1.56
+4       0.31
+5       -0.10
+6       0.28
+7       2.49
+...
+119     0.06
+120     0.94
+//
+>gene2
+1       0.03
+2       -0.06
+3       0.17
+4       0.01
+5       -1000
+...
+```
+
+
 ## Reference
 1. Deigan,K.E., Li,T.W., Mathews,D.H. and Weeks,K.M. (2009) Accurate SHAPE-directed RNA structure determination. Proc. Natl. Acad. Sci., 106, 97–102.
 2. Cordero,P., Kladwang,W., VanLang,C.C. and Das,R. (2012) Quantitative Dimethyl Sulfate Mapping for Automated RNA Secondary Structure Inference. Biochemistry, 51, 7037–7039.
