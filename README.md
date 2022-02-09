@@ -121,7 +121,7 @@ You can incorporate structure probing data (such as SHAPE or DMS reactivity data
 docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU] --SHAPE
 ```
 
-By this command, our program calculates the position-specific structural features considering the reactivity data in the probing.txt file and optimizes regression parameters based in the structural features. We adopted the approach proposed by [1] to incorporate probing data. Briefly, the reactivity value of each base is converted to the pseudo-free energy and incorporated into the calculation of the position-speficic features. The pseudo-free energy is applied twice to internal base pairs, and once to edge base pairs as in [1]. 
+By this command, our program calculates the position-specific structural features considering the reactivity data in the probing.txt file and optimizes regression parameters based in the structural features. We adopted the approach proposed by [1] to incorporate probing data. Briefly, the reactivity value of each base is converted to the pseudo-free energy and incorporated into the calculation of the position-speficic features. The pseudo-free energy is applied twice to internal base pairs, and once to edge base pairs. The --SHAPEslope and --SHAPEintercept option adjust the parameters used to convert the reactivity value to pseudo-free nergy (see [1] for details). 
 
 
 
