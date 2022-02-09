@@ -43,9 +43,12 @@ The w_opt.txt file in the directory contains the optimized regression parameters
 
 ### Options
 ```
--O string  : set the name of the output directory (default:out)  
--I string  : skip the calculation of the position-specific structural features 
---SHAPE    : use structure probing data for the calculation of the position-specific structural features
+-O string        : set the name of the output directory (default:out)  
+-I string        : skip the calculation of the position-specific structural features 
+--SHAPE          : use structure probing data for the calculation of the position-specific structural features
+--SHAPEslope     : use structure probing data for the calculation of the position-specific structural features
+--SHAPEintercept : use structure probing data for the calculation of the position-specific structural features
+--DMS            : use structure probing data for the calculation of the position-specific structural features
 ```
 
 ## Extracting secondary structural features from pairs of two short RNA sequences
@@ -112,11 +115,13 @@ This command skips the calculation of structural features and runs Ridge regress
 When you run our method, a file named nnfv.txt will be created in your output directory. This file contains the position-specific structural features and normalized activity values of each RNA sequence in a two dimensional table. The user can copy this file and use it for various analyses. For example, it can be used as input for various machine learning algorithms. Also, by writing a simple program or using software such as Excel, it is possible to extract RNAs with specific properties. For example, you can get a list of RNAs where a certain position is predicted to be on the right side of the base pair. See below for the format of the nnfv.txt file.　By calculating the mean value of the position-specific features for each position, you can obtain the trend of the secondary structure of the input RNA sequences in each position. For example, you can find out that the input RNA sequences tends to have a hairpin loop at a certain position.
 
 ## How to incorporate structure probing data
-You can incorporate structure probing data (such as SHAPE or DMS reactivity data) into the calculation of the position specific features. To do this, you have to put the probing.txt file in your data_directory as well as the seq.fa and act.txt files. The probing.txt file should contain normalized reactivity values assigned to each base (see below for the format of the probing.txt file). After those three files have been placed in your data directory, run the following command.
+You can incorporate structure probing data (such as SHAPE or DMS reactivity data) into the calculation of the position specific features. To do this, you have to put the "probing.txt" file in your data_directory as well as the "seq.fa" and "act.txt" files. The probing.txt file should contain normalized reactivity values assigned to each base (see below for the format of the probing.txt file). After those three files have been placed in your data directory, run the following command.
 
 ```
 docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU] --SHAPE
 ```
+
+By this command, our program calculates the position-specific structural features considering the reactivity data in the probing.txt file and optimizes regression parameters based in the structural features. We adopted the pseudo energy 
 
 
 
