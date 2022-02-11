@@ -131,7 +131,7 @@ docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_single.p
 
 We adopted the approach proposed by [2] and implemented in the RNAstructure program [3] to incorporate DMS probing data. The DMS reactivity is converted to the pseudo-free energy based on an empirically derived statistical potential and integrated into the downstream analysis as in the SHAPE reactivity. 
 
-We modified the CapR program [4] such that it could calculate the structural features considering the probing data and integrated it to the QRNAstructure program. 　We used CapR because it calculates the position-specific structural features based on the Turner Energy model, for which methods for integrating probe data have already been proposed.
+We modified the CapR program [4] such that it could calculate the structural features considering the probing data and integrated it to the QRNAstruct program. 　We used CapR because it calculates the position-specific structural features based on the Turner Energy model, for which methods for integrating probe data have already been proposed.
 
 
 ## How to use the position-specific features obtained by your own methods (advanced use)
