@@ -1,20 +1,21 @@
 # How to use
-You can use our programs using the Docker framework. Download "workdir.tar.gz" and "Dockerfile" in a directory you like. Then type the following command in the directory.
+You can use our programs using the Docker framework. At first, you must install Docker in your environment. Then, type the following commands.
 
 ```
+git clone https://github.com/gterai/QRNAstruct
+cd QRNAstruct
 docker build -t qrna:0 -f Dockerfile .
 ```
 
 Now, you are able to run our programs.
 
 ## Extracting secondary structural features from single RNA sequences
- The 
- single.pl is a program for extracting secondary structural features from single RNA sequences and their corresponding activity data.
+ The RNAstruct_single.pl is a program for extracting secondary structural features from single RNA sequences and their corresponding activity data.
  You can run it by the following two simple procedures.
 
 ### 1) Preparing a data directory
 You have to prepare a data directory in which “seq.fa” and “act.txt” files are included.
-The seq.fa file contains RNA sequences in the FASTA format, and act.txt file contains their activity values in a tab delimited format (Please see the act.txt file in the example/single directory in the example.tar.gz file). Please note that the length of RNA sequences in seq.fa must be the same.
+The seq.fa file contains RNA sequences in the FASTA format, and act.txt file contains their activity values in a tab delimited format (see the act.txt file in the example/single directory in the example.tar.gz file). Note that the length of RNA sequences in seq.fa must be the same.
 
 ### 2) Running the program
 Type the following command.
@@ -23,9 +24,14 @@ Type the following command.
 docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU]
 ```
 
-Please replace [data directory] to the path to your data directory. [Alpha] is the regularization parameter used in Ridge regression.
-For the data in the example/single directory, please try Alpha=1000.
+Replace [data directory] to the path to your data directory. [Alpha] is the regularization parameter used in Ridge regression.
 [nCPU] is the number of CPUs (threads) used to calculate secondary structural features. You should set it according to the available CPUs in your system.
+If you want to try our software with example data, do the following.
+```
+tar zxvf example.tar.gz
+docker run -it --rm  -v $PWD/example/single:/qrna/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU]
+```
+For the example data, try Alpha=100.
 
 ### 3) Output files
 Output files are found in the [data directory]/out directory, unless you do not specify the name of the output directory.
@@ -35,13 +41,23 @@ id2PF.txt  id2prof.txt  nnfv.txt  w_opt.png  w_opt.txt
 ```
 The w_opt.txt file in the directory contains the optimized regression parameters (coefficients), and w_opt.png is the heatmap of the optimized parameters. The parameter values tell us which structural features increase/reduce bioactivity. For example, a value of wL_i in the w_opt.txt represents the effect of the i-th base being the left side of a base pair. Please see, our paper for the explanation of the regression parameters. The nnfv.txt file contains position-specific structural features (feature vectors) and normalized bioactivity values. You can use this file to investivate the position-specific features of each RNA seuence or for the analysis with other machine learning algorithms.
 
+### Options
+```
+-O string        : set the name of the output directory (default:out)  
+-I string        : skip the calculation of the position-specific structural features 
+--SHAPE          : use SHAPE probing data for the calculation of the position-specific structural features
+--SHAPEslope     : a slope used to convert the SHAPE reactivity to pseudo-free energy (default: 1.8 kcal/mol)
+--SHAPEintercept : an intercept used to convert the SHAPE reactivity to pseudo-free energy (default: -0.6 kcal/mol)
+--DMS            : use DMS probing data for the calculation of the position-specific structural features
+```
+
 ## Extracting secondary structural features from pairs of two short RNA sequences
 The QRNAstruct_pair.pl is a program for extracting secondary structural features from two interacting RNA sequences and their corresponding activity data.
 You can run it by almost the same two procedures as the QRNA_single.pl program.
 
 ### 1) Preparing a data directory
 You have to prepare a data directory in which “seqX.fa”, “seqY.fa” and “act.txt” files are included.
-The seqX.fa file contains an RNA sequence, the seqY.fa file contains RNA sequences in the FASTA format, and act.txt file contains their activity values in a tab delimited format (Please see the act.txt file in the example/pair directory in the example.tar.gz file). Currently, the seqX file must not contain multiple RNA sequences. Please note that the length of RNA sequences in seqY.fa must be the same.
+The seqX.fa file contains an RNA sequence, the seqY.fa file contains RNA sequences in the FASTA format, and act.txt file contains their activity values in a tab delimited format (see the act.txt file in the example/pair directory in the example.tar.gz file). Currently, the seqX file must not contain multiple RNA sequences. Note that the length of RNA sequences in seqY.fa must be the same.
 
 ### 2) Running the program
 Type the following command.
@@ -49,7 +65,12 @@ Type the following command.
 docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_pair.pl [Alpha] [nCPU]
 ```
 
-[Alpha] is the regularization parameter used in Ridge regression. For the data in the example/pair directory, please try Alpha=1000. [nCPU] is the number of CPUs (threads) used to calculate secondary structural features. You should set it according to the available CPUs in your system.
+[Alpha] is the regularization parameter used in Ridge regression. For the data in the example/pair directory, please try Alpha=1000. [nCPU] is the number of CPUs (threads) used to calculate secondary structural features. You should set it according to the available CPUs in your system. If you want to try our software with example data, do the following.
+```
+tar zxvf example.tar.gz
+docker run -it --rm  -v $PWD/example/pair:/qrna/data qrna:0 ./QRNAstruct_pair.pl [Alpha] [nCPU]
+```
+For the example data, try Alpha=1000.
 
 ### 3) Output files
 Output files are found in the [data directory]/out directory, unless you do not specify the name of the output directory.
@@ -60,9 +81,9 @@ id2PF.txt    id2prof.txt     nnfv.txt   w_opt.txt    w_opt_matX.png     w_opt_ma
 
 The w_opt.txt file in the directory contains the optimized regression parameters (coefficients). w_opt_matP.png, w_opt_matX.png and w_opt_matY.png are the images of the optimized parameters arranged in three matrices. The parameter values tell us which structural features increase/reduce bioactivity.
 For example a value of wI_x_i in the w_opt.txt represents the effect of the i-th base of the RNA sequence in seqX.fa belongs to an internal loop.
-Please see, our article for the explanation of parameters. The nnfv.txt file contains the position-specific structural features (feature vecters) and normalized bioactivity values. You can use this file to investivate the position-specific features of each RNA seuence or for the analysis with other machine learning algorithms.
+Please see our article for the explanation of parameters. The nnfv.txt file contains the position-specific structural features (feature vecters) and normalized bioactivity values. You can use this file to investivate the position-specific features of each RNA seuence or for the analysis with other machine learning algorithms.
 
-## Options
+### Options
 ```
 -O string  : set the name of the output directory (default:out)  
 -I string  : skip the calculation of the position-specific structural features 
@@ -90,8 +111,28 @@ docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_pair.pl 
 ```
 This command skips the calculation of structural features and runs Ridge regression to optimize regression parameters. The -I option is useful when you want to try various Alpha values.
 
-## *How to use the position-specific features in other analyses
+## How to use the position-specific features in other analyses
 When you run our method, a file named nnfv.txt will be created in your output directory. This file contains the position-specific structural features and normalized activity values of each RNA sequence in a two dimensional table. The user can copy this file and use it for various analyses. For example, it can be used as input for various machine learning algorithms. Also, by writing a simple program or using software such as Excel, it is possible to extract RNAs with specific properties. For example, you can get a list of RNAs where a certain position is predicted to be on the right side of the base pair. See below for the format of the nnfv.txt file.　By calculating the mean value of the position-specific features for each position, you can obtain the trend of the secondary structure of the input RNA sequences in each position. For example, you can find out that the input RNA sequences tends to have a hairpin loop at a certain position.
+
+## How to incorporate structure probing data
+You can incorporate structure probing data (such as SHAPE or DMS reactivity data) into the calculation of the position specific features. To do this, you have to put the "probing.txt" file in your data_directory as well as the "seq.fa" and "act.txt" files. The probing.txt file should contain normalized reactivity values assigned to each base (see below for the format of the probing.txt file). After those three files have been placed in your data directory, run the following command.
+
+```
+docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU] --SHAPE
+```
+
+By this command, our program calculates the position-specific structural features considering the SHAPE reactivity data in the probing.txt file and optimizes regression parameters based in the structural features. We adopted the approach proposed by [1] to incorporate SHAPE probing data. Briefly, the SHAPE reactivity value of each base is converted to the pseudo-free energy and incorporated into the calculation of the position-speficic features. The pseudo-free energy is applied twice to internal base pairs, and once to edge base pairs. The --SHAPEslope and --SHAPEintercept option adjust the parameters used to convert the reactivity value to pseudo-free nergy (see [1] for details). 
+
+To incorporate DMS reactivity data, run the following command.
+
+```
+docker run -it --rm  -v [data directory]:/qrna/data qrna:0 ./QRNAstruct_single.pl [Alpha] [nCPU] --DMS
+```
+
+We adopted the approach proposed by [2] and implemented in the RNAstructure program [3] to incorporate DMS probing data. The DMS reactivity is converted to the pseudo-free energy based on an empirically derived statistical potential and integrated into the downstream analysis as in the SHAPE reactivity. 
+
+We modified the CapR program [4] such that it could calculate the structural features considering the probing data and integrated it to the QRNAstruct program. 　We used CapR because it calculates the position-specific structural features based on the Turner Energy model, for which methods for integrating probe data have already been proposed.
+
 
 ## How to use the position-specific features obtained by your own methods (advanced use)
 Users can use the position-specific structural features calculated by their own methods as input for our method. This is a very advanced use. For example, suppose a user develops a program to calculate the position-specific structural features using energy models other than the CONTRAfold, or using an algorithm taking into account the results of structure probing experiments such as DMS-seq and SHAPE. The user can use the structural features created by that program as input data for our method. This can be done by making the structural features fit the format of the nnfv.txt file. Copy the created nnfv.txt file to your output directory. Then run our program with the -I option. 
@@ -144,6 +185,39 @@ I: internal loop
 E: external loop
 {sequencce} is either x and y, which represent the sequence X and Y, respectively. {positon} is a nucleotide position on RNA sequences indicated by {sequence}.
 
+## The format of the probing.txt file
+This is an example of the probing.txt file.  
+```
+>gene1
+1       -1000
+2       -1000
+3       1.56
+4       0.31
+5       -0.10
+6       0.28
+7       2.49
+...
+119     0.06
+120     0.94
+//
+>gene2
+1       0.03
+2       -0.06
+3       0.17
+4       0.01
+5       -1000
+...
+```
+The first line starts with a ">" (greater-than) symbol and the identifier of gene following it. Subsequent lines have the position and reactivity value with a tab delimiter between them. The reactivity less than -500 indicates that there is no SHAPE reactivity data in the position. The symbols "//" indicate the end of SHAPE reactivity data of the gene that appears immediately before it. See, the probing.txt file in datasetSHAPE.tar.gz as an example.
+
 ## Reference
-submitted.
+1. Deigan,K.E., Li,T.W., Mathews,D.H. and Weeks,K.M. (2009) Accurate SHAPE-directed RNA structure determination. Proc. Natl. Acad. Sci., 106, 97–102.
+2. Cordero,P., Kladwang,W., VanLang,C.C. and Das,R. (2012) Quantitative Dimethyl Sulfate Mapping for Automated RNA Secondary Structure Inference. Biochemistry, 51, 7037–7039.
+3. Reuter,J.S. and Mathews,D.H. (2010) RNAstructure: software for RNA secondary structure prediction and analysis. BMC Bioinformatics, 11, 129.
+4. Fukunaga,T., Ozaki,H., Terai,G., Asai,K., Iwasaki,W. and Kiryu,H. (2014) CapR: revealing structural specificities of RNA-binding protein target recognition using CLIP-seq data. Genome Biol., 15, R16.
+
+## Citation
+If you use this software please cite the following article:
+submitted
+
 
