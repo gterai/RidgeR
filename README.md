@@ -208,7 +208,7 @@ This is an example of the probing.txt file.
 5       -1000
 ...
 ```
-The first line starts with a ">" (greater-than) symbol and the identifier of gene following it. Subsequent lines have the position and reactivity value with a tab delimiter between them. The reactivity less than -500 indicates that there is no SHAPE reactivity data in the position. The symbols "//" indicate the end of SHAPE reactivity data of the gene that appears immediately before it. See, the probing.txt file in datasetSHAPE.tar.gz as an example.
+The first line starts with a ">" (greater-than) symbol and the identifier of gene following it. Subsequent lines have the position and reactivity value with a tab delimiter between them. The reactivity less than -500 indicates that there is no SHAPE reactivity data in the position. The symbols "//" indicate the end of SHAPE reactivity data of the gene that appears immediately before it. See, the probing.txt file in dataset6_SHAPE.tar.gz as an example.
 
 ## Reference
 1. Deigan,K.E., Li,T.W., Mathews,D.H. and Weeks,K.M. (2009) Accurate SHAPE-directed RNA structure determination. Proc. Natl. Acad. Sci., 106, 97–102.
